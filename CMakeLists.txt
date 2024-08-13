@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8.3)
+set(FW_PATH "../fw" CACHE STRING "Path to the FW")
+find_package(OpenCV REQUIRED)
+file(GLOB_RECURSE sources *.cpp)
+add_library(boosted STATIC ${sources})
+target_link_libraries(boosted ${OpenCV_LIBS}) #fw)
+add_executable(run bounding_boxer.cpp)
+target_link_libraries(run boosted)
